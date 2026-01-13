@@ -185,7 +185,8 @@ public class Picture extends SimplePicture {
         Pixel[][] grid = this.getPixels2D();
         for(Pixel[] row : grid){
             for(Pixel p : row){
-                p.setBlue(105);
+                p.setBlue(p.getBlue()/2);
+                p.setRed(p.getRed()*4);
                 
             }
         }
@@ -198,16 +199,22 @@ public class Picture extends SimplePicture {
      */
     public void mirrorVertical() {
         Pixel[][] picture = this.getPixels2D();
-
+        int cols = picture[0].length;
+        for (int r = 0; r < picture.length; r++) {
+            for (int c = 0; c < cols / 2; c++) {
+                picture[r][cols - 1 - c].setColor(picture[r][c].getColor());
+            }
+        }
     }
-
     /**
      * Method that mirrors the picture around a vertical mirror in the center of the
      * picture from right to left
      */
     public void mirrorVerticalRightToLeft() {
         Pixel[][] pixels = this.getPixels2D();
-
+        int cols = pixels[0].length;
+        for(int r = pixels.length; r > pixels.length/2; r--){
+        }
     }
 
     /**
