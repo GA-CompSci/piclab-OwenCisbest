@@ -30,7 +30,7 @@ public class PictureTester {
         // --------------
         // ACTIVITY 6
         // testMirrorVertical();
-        testMirrorVerticalRightToLeft();
+        // testMirrorVerticalRightToLeft();
         // testMirrorHorizontal();
         // testMirrorHorizontalBotToTop();
         // testMirrorDiagonal();
@@ -38,7 +38,7 @@ public class PictureTester {
         // ---------------
         // ACTIVITY 7
         // testMirrorTemple();
-        // testMirrorArms();
+        testMirrorArms();
         // testMirrorGull();
 
         // ---------------

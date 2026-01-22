@@ -213,7 +213,10 @@ public class Picture extends SimplePicture {
     public void mirrorVerticalRightToLeft() {
         Pixel[][] pixels = this.getPixels2D();
         int cols = pixels[0].length;
-        for(int r = pixels.length; r > pixels.length/2; r--){
+        for(int r = 0; r < pixels.length; r++){
+            for(int c = cols - 1; c >= cols/2; c--){
+                pixels[r][cols - 1 - c].setColor(pixels[r][c].getColor());
+            }
         }
     }
 
@@ -223,7 +226,12 @@ public class Picture extends SimplePicture {
      */
     public void mirrorHorizontal() {
         Pixel[][] pixels = this.getPixels2D();
-
+        int rows = pixels.length;
+        for (int r = 0; r < rows / 2; r++) {
+            for (int c = 0; c < pixels[0].length; c++) {
+                pixels[rows - 1 - r][c].setColor(pixels[r][c].getColor());
+            }
+        }
     }
 
     /**
@@ -231,7 +239,13 @@ public class Picture extends SimplePicture {
      * the picture from bottom to top
      */
     public void mirrorHorizontalBotToTop() {
-
+        Pixel[][] pixels = this.getPixels2D();
+        int rows = pixels.length;
+        for (int r = rows - 1; r >= rows / 2; r--) {
+            for (int c = 0; c < pixels[0].length; c++) {
+                pixels[rows - 1 - r][c].setColor(pixels[r][c].getColor());
+            }
+        }
     }
 
     /**
@@ -246,12 +260,30 @@ public class Picture extends SimplePicture {
     /** Mirror just part of a picture of a temple */
     public void mirrorTemple() {
         Pixel[][] pixels = this.getPixels2D();
-
+        int mirrorpoint = 276;
+        Pixel leftPixel = null;
+        Pixel rightPixel = null;
+        for(int row = 27; row < 97; row++){
+            for(int col = 13; col < mirrorpoint; col++){
+                leftPixel = pixels[row][col];
+                rightPixel = pixels[row][mirrorpoint - col + mirrorpoint];
+                rightPixel.setColor(leftPixel.getColor());
+            }
+        }
     }
 
     /** Mirror just part of a picture of a snowman */
     public void mirrorArms() {
-
+        /* 
+        Pixel leftPixel = null;
+        Pixel rightPixel = null;
+        int mirrorpoint =205;
+        for(int row = 150; row < 200; row++){
+            for(int col = 90; col < mirrorpoint; col++){
+                leftPixel = 
+            }
+        }
+        */
     }
 
     /** Mirror just the gull */
