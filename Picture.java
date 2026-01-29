@@ -274,21 +274,35 @@ public class Picture extends SimplePicture {
 
     /** Mirror just part of a picture of a snowman */
     public void mirrorArms() {
-        /* 
+        Pixel[][] pixels = this.getPixels2D();
         Pixel leftPixel = null;
         Pixel rightPixel = null;
-        int mirrorpoint =205;
-        for(int row = 150; row < 200; row++){
-            for(int col = 90; col < mirrorpoint; col++){
-                leftPixel = 
+        int mirrorpoint = 195;
+        for(int row = 157; row < mirrorpoint; row++){
+            //Ignore the fact i kept these as leftpixel and rightpixel, i js copied and pasted from my last test lol.
+            for(int col = 100; col<174; col++){
+            leftPixel = pixels[row][col];
+            rightPixel = pixels[mirrorpoint - row + mirrorpoint][col];
+            rightPixel.setColor(leftPixel.getColor());
+            
+            
             }
         }
-        */
     }
 
     /** Mirror just the gull */
     public void mirrorGull() {
-
+        Pixel[][] pixels = this.getPixels2D();
+        int mirrorpoint = 360;
+        Pixel leftPixel = null;
+        Pixel rightPixel = null;
+        for(int row = 215; row < 340; row++){
+            for(int col = 220; col < mirrorpoint; col++){
+                leftPixel = pixels[row][col];
+                rightPixel = pixels[row][mirrorpoint - col + mirrorpoint];
+                rightPixel.setColor(leftPixel.getColor());
+            }
+        }
     }
 
     /**
