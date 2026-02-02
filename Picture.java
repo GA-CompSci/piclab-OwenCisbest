@@ -1,10 +1,6 @@
 import java.awt.*;
-import java.awt.font.*;
-import java.awt.geom.*;
 import java.awt.image.BufferedImage;
-import java.text.*;
-import java.util.*;
-import java.util.List; // resolves problem with java.awt.List and java.util.List
+import java.util.function.Consumer;
 
 /**
  * A class that represents a picture. This class inherits from SimplePicture and
@@ -298,10 +294,12 @@ public class Picture extends SimplePicture {
         Pixel rightPixel = null;
         for(int row = 215; row < 340; row++){
             for(int col = 220; col < mirrorpoint; col++){
-                leftPixel = pixels[row][col];
-                rightPixel = pixels[row][mirrorpoint - col + mirrorpoint];
-                rightPixel.setColor(leftPixel.getColor());
-            }
+                if((pixels[row][col].getBlue() < 120 && pixels[row][col].getRed() < 120) || (pixels[row][col].getBlue() > 160 && pixels[row][col].getRed() >160) ){
+                    leftPixel = pixels[row][col];
+                    rightPixel = pixels[row][mirrorpoint - col + mirrorpoint];
+                    rightPixel.setColor(leftPixel.getColor());
+                }
+            }    
         }
     }
 
@@ -331,8 +329,23 @@ public class Picture extends SimplePicture {
 
     /** Method to create a collage of several pictures */
     public void createCollage() {
-        Pixel[][] pixels = this.getPixels2D();
+        
+        Picture[] images = {
+            new Picture("flower1.jpg"),
+            new Picture("flower2.jpg"),
+            new Picture("robot.jpg"),
+            new Picture("barbaraS.jpg")
+        };
 
+        for(int i = 0; i < 100; i++){
+            for(Picture img : images){
+                int row = (int) (Math.random() *450);
+                int col = (int) (Math.random() *450);
+                if(row >= 0 && col >= 0){
+                    this.copy(img, row, col);
+                }
+            }
+        }
         this.popArt();
     }
 
