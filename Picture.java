@@ -315,6 +315,20 @@ public class Picture extends SimplePicture {
         Picture swan = new Picture("swan.jpg");
         Pixel[][] original = swan.getPixels2D();
 
+        // loop through all the rows
+        for (int row = 0; row < pixels.length; row++) {
+            for (int col = 0; col < pixels[0].length - 1; col++) {
+                leftPixel = pixels[row][col];
+                rightPixel = pixels[row][col + 1];
+
+                // comparing the color distances here to see if the pixel should be black or white.
+                if (leftPixel.colorDistance(rightPixel.getColor()) > edgeDist) {
+                    leftPixel.setColor(Color.BLACK);
+                } else {
+                    leftPixel.setColor(Color.WHITE);
+                }
+            }
+        }
     }
 
     /**
